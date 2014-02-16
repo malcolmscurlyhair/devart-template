@@ -5,3 +5,8 @@ Progress!  Of sorts.  First check-in consists of a very simple implementation of
 http://en.wikipedia.org/wiki/Maze_generation_algorithm#Recursive_division_method
 
 
+A sample result is here:
+
+https://github.com/malcolmscurlyhair/devart-template/blob/master/project_images/sample.jpg
+
+
