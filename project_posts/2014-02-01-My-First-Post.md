@@ -1,5 +1,7 @@
-Insert a description to describe your update to document your creative process. The Commissioned Interactive Artists will be doing the same so you can reference their Project Posts.
+## First Post!
 
-![Example Image](../project_images/cover.jpg?raw=true "Example Image")
+Progress!  Of sorts.  First check-in consists of a very simple implementation of the maze-building algorithm, using processing and Javascript.  Currently it just gets drawn on screen, at a configurable size.  I'm using the recursive division method, which is nicely described on Wikipedia:
 
-https://www.youtube.com/watch?v=30yGOxJJ2PQ
+http://en.wikipedia.org/wiki/Maze_generation_algorithm#Recursive_division_method
+
+
