@@ -1,4 +1,4 @@
-# The Gradual Introducction of New Ideas
+# The Gradual Introduction of New Ideas
 
 ## Authors
 - Malcolm McDonald (https://github.com/malcolmscurlyhair)
