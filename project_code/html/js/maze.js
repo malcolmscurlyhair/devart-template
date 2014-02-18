@@ -1,11 +1,8 @@
-var states = new Array();
-var notes  = new Array();
-
 var punchHoles = true;
 
 var NORTH = 0, EAST = 1, SOUTH = 2, WEST = 3;
 
-var maze = generateMaze(250, 250);
+var maze = generateMaze(120, 120);
 
 function generateMaze(width, height)
 {
@@ -52,13 +49,7 @@ function generateMaze(width, height)
 
 function divide(maze, startX, startY, endX, endY)
 {
-   if (notes)
-   {
-      // Add a new list of comments on this generation.
-      notes.push(new Array());
-   }
-
-   log("Dividing cell with x-values (" + startX + "-" + endX + "), \n y-values (" + startY + "-" + endY + ").");
+   log("Dividing cell with x-values (" + startX + "-" + endX + "), y-values (" + startY + "-" + endY + ").");
 
    /**
     * Draw the insides of the maze, using the recursive division method.  Pick out X and Y locations
@@ -226,21 +217,13 @@ function divide(maze, startX, startY, endX, endY)
       }
    }
 
-   if (states)
-   {
-      // Record the current state of the maze, so we get a replay of the maze generation algorithm.
-      states.push(clone(maze));
-   }
-
    /**
     * Continue to divide the four cells we have created, if they are sufficiently large.
     */
-
    if (wallY - startY > 3 && wallX - startX > 3)
    {
       log("Dividing NORTH WEST cell.");
 
-      // Divide the NORTH WEST cell further.
       divide(maze, startX, startY, wallX, wallY);
    }
 
@@ -248,7 +231,6 @@ function divide(maze, startX, startY, endX, endY)
    {
       log("Dividing NORTH EAST cell.");
 
-      // Divide the NORTH EAST cell further.
       divide(maze, wallX, startY, endX, wallY);
    }
 
@@ -256,7 +238,6 @@ function divide(maze, startX, startY, endX, endY)
    {
       log("Dividing SOUTH EAST cell.");
 
-      // Divide the SOUTH EAST cell further.
       divide(maze, wallX, wallY, endX, endY);
    }
 
@@ -264,7 +245,6 @@ function divide(maze, startX, startY, endX, endY)
    {
       log("Dividing SOUTH WEST cell.");
 
-      // Divide the SOUTH WEST cell further.
       divide(maze, startX, wallY, wallX, endY);
    }
 
@@ -289,11 +269,6 @@ function punchAt(a, b)
 function log(message)
 {
    console.log(message);
-
-   if (notes)
-   {
-      notes[ notes.length - 1 ].push(message);
-   }
 }
 
 function clone(array)

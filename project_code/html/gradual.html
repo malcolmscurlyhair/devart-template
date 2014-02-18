@@ -2,39 +2,99 @@
 <html>
   <head>
     <title>The Gradual Introduction of New Ideas</title>
+
     <meta charset="UTF-8">
-    <script type="text/javascript" src="js/processing-1.4.1.js"></script>
-    <script type="text/javascript" src="js/maze.js"></script>
+
+    <script type="text/javascript" src="js/processing-1.4.1.js"> </script>
+    <script type="text/javascript" src="js/maze.js">             </script>
 
     <script type="text/processing" data-processing-target="canvas">
-        float y_off = 0.0;
+
+
+        boolean isometric = true;
+
+        float CANVAS_WIDTH  = 1500;
+        float CANVAS_HEIGHT = 1000;
+
+        float FIELD_X = +(CANVAS_WIDTH  / 2);
+        float FIELD_Y = -(CANVAS_HEIGHT / 2);
+
+        float BLOCK_WIDTH  = 20;
+        float BLOCK_HEIGHT = 20;
+        float ELEVATION = 8;
 
         void setup()
         {
-           size(1500, 1000);
+           size(CANVAS_WIDTH, CANVAS_HEIGHT);
+
+           noStroke();
         }
 
         void draw()
         {
-           noStroke();
-
            for (int x = 0; x < maze.length; x += 1)
            {
               for (int y = 0; y < maze[x].length; y += 1)
               {
-                 if (maze[y][x])
+                 if (isometric)
                  {
-                    fill(0);
+                    if (maze[y][x])
+                    {
+                       drawCube(x, y, 0);
+                    }
                  }
                  else
                  {
-                    fill(255);
-                 }
+                    if (maze[y][x])
+                    {
+                       fill(0);
+                    }
+                    else
+                    {
+                       fill(255);
+                    }
 
-                 rect((x * 10), (y * 10), (10), (10));
+                    rect((x * 10), (y * 10), (10), (10));
+                 }
               }
            }
+
+           if (isometric)
+           {
+              drawAgent();
+           }
         }
+
+        void drawCube(int xp,int yp, float zp)
+        {
+           float x = FIELD_X + (xp * BLOCK_WIDTH) - (yp * BLOCK_WIDTH);
+           float y = FIELD_Y + (xp * ELEVATION) + (yp * ELEVATION) - (zp * BLOCK_HEIGHT);
+
+           fill(240,240,255);
+           quad(x, y, x, y + BLOCK_HEIGHT, x + BLOCK_WIDTH, y + BLOCK_HEIGHT + ELEVATION, x + BLOCK_WIDTH, y + ELEVATION);
+
+           fill(170,170,220);
+           quad(x + BLOCK_WIDTH, y + BLOCK_HEIGHT + ELEVATION, x + BLOCK_WIDTH, y + ELEVATION, x + BLOCK_WIDTH + BLOCK_WIDTH, y, x + BLOCK_WIDTH + BLOCK_WIDTH, y + BLOCK_HEIGHT);
+
+           fill(255 -(3 * zp));
+           quad(x, y, x + BLOCK_WIDTH, y + ELEVATION, x + BLOCK_WIDTH + BLOCK_WIDTH, y, x + BLOCK_WIDTH, y - ELEVATION);
+        }
+
+        void drawAgent()
+        {
+           fill(0, 0, 0);
+           ellipse(CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2, 24, 24);
+
+           fill(170, 0, 0);
+           ellipse(CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2, 22, 22);
+
+           fill(255, 110, 110);
+           ellipse(0.5 + (CANVAS_WIDTH / 2), -0.5 + (CANVAS_HEIGHT / 2), 21, 21);
+
+           fill(255, 245, 245);
+           ellipse(4.5 + (CANVAS_WIDTH / 2), -4.5 + (CANVAS_HEIGHT / 2), 3, 3);
+        }
+
 
     </script>
   </head>

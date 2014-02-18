@@ -17,4 +17,3 @@ Next on the agenda:
 - Render the maze in isometric 3D.
 - Figure out how to make the canvas take up the entire browser window.
 
-
